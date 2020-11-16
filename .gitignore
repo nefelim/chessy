@@ -27,5 +27,11 @@
 *.out
 *.app
 
-#CMake temporary
+# CMake temporary
 *.user
+
+# Build dirs
+build*
+/obj/
+/lib/
+/bin/

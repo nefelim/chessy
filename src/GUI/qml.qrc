@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>QML/main.qml</file>
+        <file>QML/Constants.js</file>
+        <file>QML/Board.qml</file>
+        <file>images/pieces/bb.svg</file>
+        <file>images/pieces/wb.svg</file>
+        <file>images/pieces/bk.svg</file>
+        <file>images/pieces/wk.svg</file>
+        <file>images/pieces/bn.svg</file>
+        <file>images/pieces/wn.svg</file>
+        <file>images/pieces/bp.svg</file>
+        <file>images/pieces/wp.svg</file>
+        <file>images/pieces/bq.svg</file>
+        <file>images/pieces/wq.svg</file>
+        <file>images/pieces/br.svg</file>
+        <file>images/pieces/wr.svg</file>
+    </qresource>
+</RCC>
