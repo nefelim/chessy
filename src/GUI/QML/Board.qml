@@ -76,10 +76,19 @@ Rectangle
     Connections
     {
        target : contextProvider.engine
-       onBoardChanged:
+       onRefresh:
        {
-           console.log("boardChanged")
-           board.update();
+           console.log("Refresh")
+           board.update()
+       }
+    }
+
+    Connections
+    {
+       target : contextProvider.engine
+       onMessage:
+       {
+           console.log(message)
        }
     }
 }

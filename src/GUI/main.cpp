@@ -13,21 +13,9 @@ int main(int argc, char** argv)
     QQmlApplicationEngine engine;
     auto ctx = engine.rootContext();
     ctx->setContextProperty("contextProvider", &contextProvider);
-    qRegisterMetaType<Chessy::GnuChessEngine*>("Chessy::GnuChessEngine*");
 
-    engine.load(QUrl(QStringLiteral("qrc:/QML/main.qml")));
-    auto res = 0;
-    try
-    {
-        res = app.exec();
-    }
-    catch (const std::exception& ex)
-    {
-        QMessageBox::critical(nullptr
-                              , qtTrId("Error")
-                              , QString::fromStdString(ex.what()));
-        return 1;
-    }
+    qRegisterMetaType<Chessy::GnuChessEngine*>("Chessy::GnuChessEngine*"); // Q_DECLARE_METATYPE ???
 
-    return res;
+    engine.load("qrc:/QML/main.qml");
+    return app.exec();
 }

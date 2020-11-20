@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.0
+import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.2
 import "Constants.js" as Constants
 
 ApplicationWindow
@@ -32,10 +34,31 @@ ApplicationWindow
         }
     }
 
-    Board
+    ColumnLayout
     {
-        id : chessBoard
         anchors.fill : parent
+        spacing: 2
+        Board
+        {
+            id : chessBoard
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+
+        TextInput
+        {
+            id : command
+            height: 30
+            Layout.fillWidth: true
+            enabled: gameIsStarted
+
+            onAccepted:
+            {
+                var engine = contextProvider.engine
+                engine.sendCommand(text)
+                text = ""
+            }
+        }
     }
 
     Action
@@ -63,4 +86,40 @@ ApplicationWindow
         text: qsTr("Abo&ut")
         onTriggered: console.log("Abo&ut")
     }
+
+    MessageDialog
+    {
+        id: infoMessage
+        icon: StandardIcon.Information
+        title: qsTr("Info")
+    }
+
+    Connections
+    {
+       target : contextProvider.engine
+       onMessage:
+       {
+           infoMessage.text = message
+           infoMessage.open()
+       }
+    }
+
+    MessageDialog
+    {
+        id: gameOverMessage
+        title: qsTr("GameOver")
+    }
+
+    Connections
+    {
+       target : contextProvider.engine
+       onGameOver:
+       {
+           gameOverMessage.text = message
+           gameOverMessage.open()
+           gameIsStarted = false;
+       }
+    }
 }
+
+
